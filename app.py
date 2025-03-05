@@ -38,7 +38,8 @@ def compare_inventory():
         merged_df.to_csv(output, index=False)
         output.seek(0)
 
-        return send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, attachment_filename='audit_report.csv')
+        return send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, download_name='audit_report.csv')
+
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
