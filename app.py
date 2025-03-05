@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 import pandas as pd
 import io
+import os
 
 app = Flask(__name__)
 
@@ -41,4 +42,5 @@ def compare_inventory():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Get PORT from Render, default to 5000
+    app.run(host='0.0.0.0', port=port, debug=True)
